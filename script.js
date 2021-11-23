@@ -1,50 +1,42 @@
 window.onload = function () {
-  /* A seguir está o código para criar uma tarefa quando inserido um texto e clicado o botão. */
-  let buttonCreateTask = document.getElementById("criar-tarefa");
-  let taskList = document.getElementById('lista-tarefas');
-
-  buttonCreateTask.addEventListener('click', createTask);
+/* A seguir está o código para criar uma tarefa quando inserido um texto e clicado o botão. */
+  const buttonCreateTask = document.getElementById('criar-tarefa');
+  const taskList = document.getElementById('lista-tarefas');
 
   function createTask() {
-    let taskListItem = document.createElement('li');
-    let textoTarefa = document.getElementById('texto-tarefa').value;
-    
-    if (textoTarefa === "") {
-      window.alert("Não há texto a adicionar!")
+    const taskListItem = document.createElement('li');
+    const textoTarefa = document.getElementById('texto-tarefa').value;
+
+    if (textoTarefa === '') {
+      window.alert('Não há texto a adicionar!');
     } else {
       taskListItem.innerText = textoTarefa;
       taskList.appendChild(taskListItem);
-      document.getElementById('texto-tarefa').value = "";
+      document.getElementById('texto-tarefa').value = '';
     }
+  }
 
-  /* Alterar o fundo do item clicado para cinza. */
-  taskList.addEventListener('click', makeOneGray);
+  buttonCreateTask.addEventListener('click', createTask);
 
+/* Alterar o fundo do item clicado para cinza e qualquer não-clicado para branco. */
   function makeOneGray() {
     function ungray() {
-      let oldSelected = document.querySelector('.selected');
+      const oldSelected = document.querySelector('.selected');
       if (oldSelected != null) {
         oldSelected.classList.remove('selected');
-        oldSelected.style.backgroundColor = "";
+        oldSelected.style.backgroundColor = '';
       }
     }
     function gray() {
-      let clicked = event.target;
+      const clicked = event.target;
 
       clicked.classList.add('selected');
-      clicked.style.backgroundColor = "rgb(128, 128, 128)";
+      clicked.style.backgroundColor = 'rgb(128, 128, 128)';
     }
     ungray();
     gray();
-    /* let clicked = event.target;
-    clicked.classList.add('selected');
-
-    let notClicked = document.querySelectorAll('li:not(.selected)');
-
-    notClicked.style.backgroundColor = "";
-
-    clicked.style.backgroundColor = "rgb(128, 128, 128)"; */
   }
 
-  }
-}
+  taskList.addEventListener('click', makeOneGray);
+
+};
