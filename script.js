@@ -18,10 +18,32 @@ window.onload = function () {
     }
 
   /* Alterar o fundo do item clicado para cinza. */
-  taskList.addEventListener('click', changeToGray);
+  taskList.addEventListener('click', makeOneGray);
 
-  function changeToGray() {
-    event.target.style.backgroundColor = "rgb(128, 128, 128)";
+  function makeOneGray() {
+    function ungray() {
+      let oldSelected = document.querySelector('.selected');
+      if (oldSelected != null) {
+        oldSelected.classList.remove('selected');
+        oldSelected.style.backgroundColor = "";
+      }
+    }
+    function gray() {
+      let clicked = event.target;
+
+      clicked.classList.add('selected');
+      clicked.style.backgroundColor = "rgb(128, 128, 128)";
+    }
+    ungray();
+    gray();
+    /* let clicked = event.target;
+    clicked.classList.add('selected');
+
+    let notClicked = document.querySelectorAll('li:not(.selected)');
+
+    notClicked.style.backgroundColor = "";
+
+    clicked.style.backgroundColor = "rgb(128, 128, 128)"; */
   }
 
   }
