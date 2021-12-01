@@ -41,4 +41,19 @@ window.onload = function () {
   // tem que fazer que apenas o item li possa ficar cinza, e não a ol também.
   taskList.addEventListener('click', makeOneGray);
 
+/* Clicar duas vezes fica riscado. Se nele clicar duas vezes uma segunda vez ele fica normal. */
+  function maybeStrikethrough() {
+    let clicked = event.target;
+
+    if (clicked.classList.contains('completed') === true) {
+      clicked.classList.remove('completed');
+      clicked.style.textDecoration = '';
+    } else {
+      clicked.classList.add('completed');
+      clicked.style.textDecoration = 'line-through solid rgb(0, 0, 0)';
+    }
+  }
+
+  taskList.addEventListener('dblclick', maybeStrikethrough);
+
 };
